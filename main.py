@@ -46,6 +46,3 @@ name = input('Enter name: ')
 breed = input('Enter breed: ')
 woo = Dog(name, breed, 0, 0)
 
-for i in range(5):
-    woo.eat()
-    woo.drink()
