@@ -1,3 +1,6 @@
+import json
+
+
 class Dog:
     def __init__(self, name, breed, food, water):
         self.name = name
@@ -19,7 +22,7 @@ class Dog:
         if self.water == 5:
             print('{} water is {} out of 5. {} is not thirsty...'.format(self.name, self.food, self.name))
 
-    def poop(self):
+    def poo(self):
         pass
 
     def pee(self):
@@ -41,8 +44,24 @@ class Dog:
         pass
 
 
-print('Dog Simulator Registration')
-name = input('Enter name: ')
-breed = input('Enter breed: ')
-woo = Dog(name, breed, 0, 0)
+def register():
+    print('Dog Simulator Registration')
+    name = input('Enter name: ')
+    breed = input('Enter breed: ')
+    # x = Dog(name, breed, 0, 0)
 
+
+class DogEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Dog):
+            return {'name': o.name, 'breed': o.breed, 'food': o.food, 'water': o.water}
+
+        raise TypeError(f'Object {o} is not of type Dog.')
+
+
+woo = Dog('Woo', 'cocker', 0, 0)
+json_woo = json.dumps(woo, cls=DogEncoder, indent=4)
+print(json_woo)
+
+with open('json\data', 'w') as file:
+    file.write(json_woo)
