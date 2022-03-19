@@ -1,6 +1,7 @@
 {
     "name": "luna",
-    "breed": "cocker spaniel",
+    "breed": "cocker",
+    "gender": "girl",
     "food": 0,
     "water": 0
 }
