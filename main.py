@@ -2,6 +2,10 @@ import json
 
 
 def main():
+    class Owner:
+        def __init__(self, name):
+            self.name = name
+
     class Dog:
         def __init__(self, name, breed, gender, food, water):
             self.name = name
@@ -13,18 +17,18 @@ def main():
         def feed(self):
             if self.food < 5:
                 self.food += 1
-                print(f'{self.name} is hungry. {self.food} out of 5.')
+                print(f'{self.name} is still hungry. Hunger Level: {self.food}/5.')
             if self.food == 5:
-                print(f'{self.name} is not hungry. {self.food} out of 5.')
-                print(f'{self.name} needs to poo!')
+                print(f'{self.name} is not hungry. Hunger Level: {self.food}/5.')
+                print(f'You need to take {self.name} outside to poo.')
 
         def refill_water(self):
             if self.water < 5:
                 self.water += 1
-                print(f'{self.name} is thirsty. {self.water} out of 5.')
+                print(f'{self.name} is still thirsty. Thirst Level: {self.water}/5.')
             if self.water == 5:
-                print(f'{self.name} is not thirsty. {self.water} out of 5.')
-                print(f'{self.name} needs to pee!')
+                print(f'{self.name} is not thirsty. Thirst Level: {self.water}/5.')
+                print(f'You need to take {self.name} outside to pee.')
 
         def poo(self):
             self.food = 0
@@ -50,20 +54,27 @@ def main():
             pass
 
         def walk(self):
-            behavior = input(f'Is {self.name} being a good {self.gender}? Type y/n:')
-
-            if behavior == 'y':
-                print(f'\nGive {self.name} a treat!')
-            elif behavior == 'n':
-                print(f'Observe what is triggering {self.name} and think of ways to avoid this in the future...')
-
-            if self.food > 0:
+            if self.food == 0 or self.water == 0:
+                print(f'You need to feed and refill water for {self.name} before going on a walk.')
+            else:
+                behavior = input(f'Is {self.name} being a good {self.gender}? Type y/n:')
+                if behavior == 'y':
+                    print(f'\nGive {self.name} a treat!')
+                elif behavior == 'n':
+                    print(f'Observe what is triggering {self.name} and think of ways to avoid this in the future.')
                 self.food = self.food - 1
-            if self.water > 0:
                 self.water = self.water - 1
 
         def notifications(self):
-            pass
+            print('\nNotifications:')
+            if self.food == 0:
+                print(f'You need to feed {self.name}.')
+            if self.water == 0:
+                print(f'You need to refill water for {self.name}.')
+            if self.food == 5:
+                print(f'You need to take {self.name} outside to poo.')
+            if self.water == 5:
+                print(f'You need to take {self.name} outside to pee.')
 
     class DogEncoder(json.JSONEncoder):
         def default(self, o):
@@ -94,10 +105,10 @@ def main():
               "5. Train\n"
               "6. Pee\n"
               "7. Poo\n"
-              "8. Exit Simulator"
+              "8. Exit"
               )
 
-    print('Welcome to Dog Simulator!')
+    print('\nWelcome to Dog Simulator!')
     luna = Dog('Luna', 'Cocker Spaniel', 'girl', 0, 0)
 
     while True:
@@ -115,9 +126,9 @@ def main():
         if option == 5:
             pass
         if option == 6:
-            pass
+            luna.pee()
         if option == 7:
-            pass
+            luna.poo()
         if option == 8:
             print('Thank you for using Dog Simulator. Good bye!')
             break
