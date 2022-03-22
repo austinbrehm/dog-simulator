@@ -38,19 +38,7 @@ def main():
             self.water = 0
             print(f'{self.name} says: "Ahhh much better!"')
 
-        def cuddle(self):
-            pass
-
-        def growl(self):
-            pass
-
-        def bark(self):
-            pass
-
         def train(self):
-            pass
-
-        def give_treat(self):
             pass
 
         def walk(self):
@@ -64,6 +52,29 @@ def main():
                     print(f'Observe what is triggering {self.name} and think of ways to avoid this in the future.')
                 self.food = self.food - 1
                 self.water = self.water - 1
+
+        def adoption(self):
+            pass
+
+        def veterinarian(self):
+            print('\nWelcome to the Veterinary Center!\n'
+                  '1. Wellness Examination\n'
+                  '2. Emergency')
+            choice = input('Select an option: ')
+            if choice == 1:
+                print('Checking for symptoms...')
+            if choice == 2:
+                print('Emergency List\n'
+                      '1. Acute Vomiting'
+                      '2. Poisoning'
+                      '3. Trauma')
+                another_choice = input('Select an option: ')
+                if another_choice == 1:
+                    print(f'{self.name} is going to be okay. Here is some anti-nausea medication. Goodbye!')
+                if another_choice == 2:
+                    print(f'We need to monitor {self.name} overnight. Please feel free to stay through the night.')
+                if another_choice == 3:
+                    print(f'{self.name} has a broken leg. We applied a cast. {self.name} will be okay. Goodbye!')
 
         def notifications(self):
             print('\nNotifications:')
@@ -80,7 +91,6 @@ def main():
         def default(self, o):
             if isinstance(o, Dog):
                 return {'name': o.name, 'breed': o.breed, 'gender': o.gender, 'food': o.food, 'water': o.water}
-
             raise TypeError(f'Object {o} is not of type Dog.')
 
     def register():
@@ -90,10 +100,8 @@ def main():
         gender = input('Enter gender: ')
         new_dog = Dog(name, breed, gender, 0, 0)
         json_new_dog = json.dumps(new_dog, cls=DogEncoder, indent=4)
-
         with open('json\data', 'w') as f:
             f.write(json_new_dog)
-
         print(f'{new_dog.name} is now registered!')
 
     def menu():
@@ -105,7 +113,9 @@ def main():
               "5. Train\n"
               "6. Pee\n"
               "7. Poo\n"
-              "8. Exit"
+              "8. Veterinarian\n"
+              "9. Adoption\n"
+              "10. Exit"
               )
 
     print('\nWelcome to Dog Simulator!')
@@ -130,6 +140,10 @@ def main():
         if option == 7:
             luna.poo()
         if option == 8:
+            luna.veterinarian()
+        if option == 9:
+            pass
+        if option == 10:
             print('Thank you for using Dog Simulator. Good bye!')
             break
 
