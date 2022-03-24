@@ -2,10 +2,6 @@ import json
 
 
 def main():
-    class Owner:
-        def __init__(self, name):
-            self.name = name
-
     class Dog:
         def __init__(self, name, breed, gender, food, water):
             self.name = name
@@ -31,12 +27,18 @@ def main():
                 print(f'You need to take {self.name} outside to pee.')
 
         def poo(self):
-            self.food = 0
-            print(f'{self.name} says: "Ahhh much better!"')
+            if self.food == 0:
+                print(f'{self.name} does not need to poo right now.')
+            if self.food > 0:
+                self.food = 0
+                print(f'{self.name} went poo. Make sure you pick up and dispose of the waste.')
 
         def pee(self):
-            self.water = 0
-            print(f'{self.name} says: "Ahhh much better!"')
+            if self.water == 0:
+                print(f'{self.name} does not need to pee right now.')
+            if self.water > 0:
+                self.water = 0
+                print(f'{self.name} went pee.')
 
         def train(self):
             pass
@@ -47,7 +49,7 @@ def main():
             else:
                 behavior = input(f'Is {self.name} being a good {self.gender}? Type y/n:')
                 if behavior == 'y':
-                    print(f'\nGive {self.name} a treat!')
+                    print(f'Give {self.name} a treat!')
                 elif behavior == 'n':
                     print(f'Observe what is triggering {self.name} and think of ways to avoid this in the future.')
                 self.food = self.food - 1
@@ -60,17 +62,17 @@ def main():
             print('\nWelcome to the Veterinary Center!\n'
                   '1. Wellness Examination\n'
                   '2. Emergency')
-            choice = input('Select an option: ')
+            choice = int(input('Select an option: '))
             if choice == 1:
                 print('Checking for symptoms...')
             if choice == 2:
-                print('Emergency List\n'
+                print('\nEmergency List\n'
                       '1. Acute Vomiting'
-                      '2. Poisoning'
-                      '3. Trauma')
-                another_choice = input('Select an option: ')
+                      '\n2. Poisoning'
+                      '\n3. Trauma')
+                another_choice = int(input('Select an option: '))
                 if another_choice == 1:
-                    print(f'{self.name} is going to be okay. Here is some anti-nausea medication. Goodbye!')
+                    print(f'{self.name} is going to be okay. Give {self.name} anti-nausea medication. Goodbye!')
                 if another_choice == 2:
                     print(f'We need to monitor {self.name} overnight. Please feel free to stay through the night.')
                 if another_choice == 3:
@@ -94,7 +96,7 @@ def main():
             raise TypeError(f'Object {o} is not of type Dog.')
 
     def register():
-        print('Dog Registration')
+        print('\nDog Registration')
         name = input('Enter name: ')
         breed = input('Enter breed: ')
         gender = input('Enter gender: ')
