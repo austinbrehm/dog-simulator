@@ -10,6 +10,36 @@ def main():
             self.food = food
             self.water = water
 
+        def get_name(self):
+            return self.name
+
+        def set_name(self, name):
+            self.name = name
+
+        def get_breed(self):
+            return self.breed
+
+        def set_breed(self, breed):
+            self.breed = breed
+
+        def get_gender(self):
+            return self.gender
+
+        def set_gender(self, gender):
+            self.gender = gender
+
+        def get_food(self):
+            return self.food
+
+        def set_food(self, food):
+            self.food = food
+
+        def get_water(self):
+            return self.water
+
+        def set_water(self, water):
+            self.water = water
+
         def feed(self):
             if self.food < 5:
                 self.food += 1
@@ -55,7 +85,7 @@ def main():
                 self.food = self.food - 1
                 self.water = self.water - 1
 
-        def adoption(self):
+        def adopt(self):
             pass
 
         def veterinarian(self):
