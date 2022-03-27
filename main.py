@@ -3,12 +3,23 @@ import json
 
 def main():
     class Dog:
+        number_of_dogs = 0
+
         def __init__(self, name, breed, gender, food, water):
             self.name = name
             self.breed = breed
             self.gender = gender
             self.food = food
             self.water = water
+            Dog.add_dog()
+
+        @classmethod
+        def number_of_dogs_(cls):
+            return cls.number_of_dogs
+
+        @classmethod
+        def add_dog(cls):
+            cls.number_of_dogs += 1
 
         def get_name(self):
             return self.name
@@ -146,12 +157,14 @@ def main():
               "6. Pee\n"
               "7. Poo\n"
               "8. Veterinarian\n"
-              "9. Adoption\n"
+              "9. Adopt\n"
               "10. Exit"
               )
 
     print('\nWelcome to Dog Simulator!')
     luna = Dog('Luna', 'Cocker Spaniel', 'girl', 0, 0)
+    buck = Dog('Buck', 'Cocker Spaniel', 'boy', 0, 0)
+    print(f'Number of Dogs: {Dog.number_of_dogs_()}')
 
     while True:
         luna.notifications()
