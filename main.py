@@ -51,7 +51,7 @@ def main():
         def set_water(self, water):
             self.water = water
 
-        def feed(self):
+        def eat(self):
             if self.food < 5:
                 self.food += 1
                 print(f'{self.name} is still hungry. Hunger Level: {self.food}/5.')
@@ -59,7 +59,7 @@ def main():
                 print(f'{self.name} is not hungry. Hunger Level: {self.food}/5.')
                 print(f'You need to take {self.name} outside to poo.')
 
-        def refill_water(self):
+        def drink_water(self):
             if self.water < 5:
                 self.water += 1
                 print(f'{self.name} is still thirsty. Thirst Level: {self.water}/5.')
@@ -81,9 +81,6 @@ def main():
                 self.water = 0
                 print(f'{self.name} went pee.')
 
-        def train(self):
-            pass
-
         def walk(self):
             if self.food == 0 or self.water == 0:
                 print(f'You need to feed and refill water for {self.name} before going on a walk.')
@@ -95,9 +92,6 @@ def main():
                     print(f'Observe what is triggering {self.name} and think of ways to avoid this in the future.')
                 self.food = self.food - 1
                 self.water = self.water - 1
-
-        def adopt(self):
-            pass
 
         def veterinarian(self):
             print('\nWelcome to the Veterinary Center!\n'
@@ -151,8 +145,8 @@ def main():
         print("\nMain Menu\n"
               "1. Register\n"
               "2. Walk\n"
-              "3. Feed\n"
-              "4. Refill Water\n"
+              "3. Eat\n"
+              "4. Drink Water\n"
               "5. Train\n"
               "6. Pee\n"
               "7. Poo\n"
@@ -163,7 +157,6 @@ def main():
 
     print('\nWelcome to Dog Simulator!')
     luna = Dog('Luna', 'Cocker Spaniel', 'girl', 0, 0)
-    buck = Dog('Buck', 'Cocker Spaniel', 'boy', 0, 0)
     print(f'Number of Dogs: {Dog.number_of_dogs_()}')
 
     while True:
@@ -175,9 +168,9 @@ def main():
         if option == 2:
             luna.walk()
         if option == 3:
-            luna.feed()
+            luna.eat()
         if option == 4:
-            luna.refill_water()
+            luna.drink_water()
         if option == 5:
             pass
         if option == 6:
